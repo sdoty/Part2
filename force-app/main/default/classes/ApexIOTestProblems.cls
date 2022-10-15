@@ -28,7 +28,7 @@ public with sharing class ApexIOTestProblems {
         }
     
     }
-
+// My solution:
     public Integer diff(Integer a, Integer b) {
 
         Integer delta = null;
@@ -40,5 +40,11 @@ public with sharing class ApexIOTestProblems {
             delta = b - a;
             return delta;
         }   
+
+// Mehdi's solution:
+//public Integer diff(Integer a, Integer b) {
+//   if (a < b) return b - a;
+//    else return a - b;
+//}
     }
 }
