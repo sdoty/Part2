@@ -18,9 +18,19 @@ public with sharing class SOQLExercises {
             FROM Account 
             WHERE AnnualRevenue > 1000000
 		];
+		// Shelley here: Adding code to list the results per line
+		// First creating collection variables for the Accounts and Contacts
 
-        System.debug('Our Accounts with contacts are: '+acctsWithContacts);
-        System.debug('And the Contacts on the first account are: '+acctsWithContacts[0].Contacts);
+
+			// System.debug('Our Accounts with contacts are: ' + acctsWithContacts);
+			for (Account a : acctsWithContacts){
+			System.debug(a.Name);
+			}
+
+	        System.debug('And the Contacts on the first account are: ');
+			for (Account c : acctsWithContacts){
+			System.debug (acctsWithContacts[0].Contacts);
+			}
 
     }
 
@@ -41,7 +51,7 @@ public with sharing class SOQLExercises {
 		//Check out further below, when we get just the average result specifically, we ask for it by passing in the alias ('aver')
 
 		//This will print out the full avgAmountResult which is an array (list) of results
-		System.debug('The result comes back in an array of AggregateResult Objects: '+avgAmountResult);
+		System.debug('The result comes back in an array of AggregateResult Objects: '+ avgAmountResult);
 
 		//to get just the average out, we need to get it from the Aggregate Results list.  We will have only one entry
 		//which is why we can reference it with [0], fetching just the first entry in the array
@@ -55,6 +65,10 @@ public with sharing class SOQLExercises {
 			FROM Opportunity 
 			GROUP BY Type
 		];
+
+
+		// Shelley here: There was no System.debug here... adding and then commenting out...
+		// System.debug('Results grouped by type: ' + avgAmountResultGrouped);
 		
 
 		//Let's loop through those results and print them out in a readable way
@@ -132,6 +146,8 @@ public with sharing class SOQLExercises {
 		List < List < SObject > > nameSearchList = [FIND 'united' IN NAME FIELDS RETURNING Account(Name), Contact(FirstName,LastName)];
 		System.debug('nameSearchList: '+ nameSearchList);
 		//Take a look at the results...Why are contacts without united in their first or last name included??
+
+		//Shelley here: becuase some other field on the object contains the search string
 
 
 		//What if we want to search for contacts with a particular email address type?
